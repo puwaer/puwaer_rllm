@@ -33,7 +33,7 @@ MAX_JOBS=5 pip install .
 MAX_JOBS=5 python setup.py install
 
 これを使用した
-MAX_JOBS=4 pip install flash-attn --no-build-isolation -v
+MAX_JOBS=10 pip install flash-attn --no-build-isolation -v
 
 
 
@@ -46,4 +46,4 @@ MAX_JOBS=10 pip install --no-build-isolation -e . -v
 
 
 pip install --no-build-isolation -e .
-pip install .
+pip install . -v
