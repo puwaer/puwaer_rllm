@@ -7,7 +7,6 @@ setup(
     author='Agentica Team',
     packages=find_packages(include=['rllm',]),
     install_requires=[
-        'torch==2.4.0',
         'deepspeed',
         'dm-tree',
         'gdown',
@@ -20,7 +19,6 @@ setup(
         'sortedcontainers',
         'tabulate',
         'torchmetrics',
-        'flash-attn',
         'gym',
         'selenium',
         'PyMuPDF',
