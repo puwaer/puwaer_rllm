@@ -41,6 +41,8 @@ git clone https://github.com/vllm-project/vllm.git
 cd vllm
 python use_existing_torch.py
 pip install -r requirements/build.txt
-MAX_JOBS=4 pip install --no-build-isolation -e .
+MAX_JOBS=5 pip install --no-build-isolation -e .
+
+MAX_JOBS=5 pip install --no-build-isolation -e . -v
 pip install --no-build-isolation -e .
 pip install .
