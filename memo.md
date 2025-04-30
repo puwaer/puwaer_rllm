@@ -31,6 +31,8 @@ pip install -U pip setuptools packaging wheel ninja pybind11
 cd /Document/puwaer_rllm/flash-attention/hopper
 MAX_JOBS=5 pip install .
 MAX_JOBS=5 python setup.py install
+
+これを使用した
 MAX_JOBS=4 pip install flash-attn --no-build-isolation
 
 
