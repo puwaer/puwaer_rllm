@@ -32,3 +32,11 @@ cd /Document/puwaer_rllm/flash-attention/hopper
 MAX_JOBS=5 pip install .
 MAX_JOBS=5 python setup.py install
 MAX_JOBS=4 pip install flash-attn --no-build-isolation
+
+
+
+git clone https://github.com/vllm-project/vllm.git
+cd vllm
+python use_existing_torch.py
+pip install -r requirements/build.txt
+pip install --no-build-isolation -e .
