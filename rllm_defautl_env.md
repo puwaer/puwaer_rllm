@@ -1,0 +1,43 @@
+        'torch==2.4.0',
+        'deepspeed',
+        'dm-tree',
+        'gdown',
+        'google-cloud-aiplatform',
+        'latex2sympy2',
+        'pybind11',
+        'pylatexenc',
+        'pytest',
+        'sentence_transformers',
+        'sortedcontainers',
+        'tabulate',
+        'torchmetrics',
+        'flash-attn',
+        'gym',
+        'selenium',
+        'PyMuPDF',
+        'nltk',
+        'browsergym',
+        'gradio',
+        'fire',
+        'vertexai',
+        'e2b_code_interpreter',
+        'firecrawl',
+        'wandb',
+
+    python_requires='>=3.9',
+
+accelerate
+codetiming
+datasets
+dill
+hydra-core
+numpy
+pandas
+peft
+pyarrow>=15.0.0
+pybind11
+ray>=2.38
+tensordict<0.6
+transformers<4.48
+vllm<=0.6.3
+wandb
