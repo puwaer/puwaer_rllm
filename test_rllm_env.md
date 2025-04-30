@@ -1,0 +1,1 @@
+Successfully installed MarkupSafe-2.1.5 filelock-3.13.1 fsspec-2024.6.1 jinja2-3.1.4 mpmath-1.3.0 networkx-3.3 numpy-2.1.2 pillow-11.0.0 sympy-1.13.1 torch-2.5.1 torchaudio-2.5.1 torchvision-0.20.1 typing-extensions-4.12.2
