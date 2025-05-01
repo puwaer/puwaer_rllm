@@ -1,6 +1,6 @@
-rllm/rllm/data/**/*.json
-rllm/rllm/data/**/*.jsonl
-rllm/rllm/data/**/*.txt
+rllm/rllm/rllm/data/**/*.json
+rllm/rllm/rllm/data/**/*.jsonl
+rllm/rllm/rllm/data/**/*.txt
 
 rllm/rllm/data/train/code/*.json
 rllm/rllm/data/train/math/*.json
