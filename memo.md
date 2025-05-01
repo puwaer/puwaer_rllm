@@ -37,3 +37,6 @@ MAX_JOBS=4 pip install flash-attn==2.7.4.post1 --no-build-isolation -v
 
 pip install vllm --no-build-isolation -v
 
+cd rllm
+pip install -e ./verl
+pip install -e .
