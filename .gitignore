@@ -1,0 +1,7 @@
+rllm/rllm/data/**/*.json
+rllm/rllm/data/**/*.jsonl
+rllm/rllm/data/**/*.txt
+
+rllm/rllm/data/train/code/*.json
+rllm/rllm/data/train/math/*.json
+rllm/rllm/data/test/code/*.json
