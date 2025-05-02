@@ -1,5 +1,10 @@
+deactivate
+rm -rf rllm_env
+rm -rf /work/gj26/j26001/.cache/uv
+rm -rf ~/.cache/uv
+
+
 module purge 
-module load python/3.10
 module load cuda/12.4
 module load cudnn/9.5.1.17
 module list
@@ -9,7 +14,7 @@ export CXX=g++
 export CUDA_VISIBLE_DEVICES=0
 
 
-uv venv rllm_env --python 3.10 
+uv venv rllm_env --python 3.10
 source rllm_env/bin/activate
 uv pip install --upgrade pip
 uv pip install setuptools
@@ -41,4 +46,4 @@ make
 uv pip install -e . -v
 
 export TORCH_CUDA_ARCH_LIST="9.0"
-MAX_JOBS=4 pip install flash-attn --no-build-isolation -v
+MAX_JOBS=4 uv pip install flash-attn --no-build-isolation -v

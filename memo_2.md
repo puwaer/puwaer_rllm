@@ -5,7 +5,8 @@ conda env remove --name rllm -y
 
 python -c "import torch; print(torch.cuda.is_available()); print(torch.version.cuda)"
 python -c "import flash_attn; print(getattr(flash_attn, '__version__', 'No version info'))"
-python -c "import vllm; print(getattr(vllm, '__version__', 'No version info'))"
+python -c "import vllm; print('vLLM version:', getattr(vllm, '__version__', 'Unknown')); from vllm import LLM; print('LLM class loaded successfully')"
+
 
 qsub -I -l select=1 -W group_list=gj26 -q interact-g -l walltime=02:00:00
 
