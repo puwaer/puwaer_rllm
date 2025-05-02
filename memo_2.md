@@ -4,7 +4,10 @@ conda deactivate
 conda env remove --name rllm -y
 
 python -c "import torch; print(torch.cuda.is_available()); print(torch.version.cuda)"
+python -c "import flash_attn; print(getattr(flash_attn, '__version__', 'No version info'))"
 
+
+qsub -I -l select=1 -W group_list=gj26 -q interact-g -l walltime=02:00:00
 
 環境構築
 conda create -n rllm python=3.10 -y
@@ -31,8 +34,9 @@ pip install tomli
 pip install ninja
 pip install einops
 
+export TORCH_CUDA_ARCH_LIST="9.0"
+MAX_JOBS=4 pip install flash-attn --no-build-isolation -v
 
-MAX_JOBS=4 pip install flash-attn== --no-build-isolation -v
 
 
 git clone https://github.com/vllm-project/vllm.git
