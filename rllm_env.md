@@ -1,6 +1,4 @@
 torch,flash_attn
-
-
 (rllm) [j26001@mg0022 ~]$ pip list
 Package                   Version
 ------------------------- ------------
@@ -156,3 +154,9 @@ urwid                     2.6.16
 wcwidth                   0.2.13
 wheel                     0.45.1
 xxhash                    3.5.0
+
+
+
+
+torch,flash_attn,vllm
+

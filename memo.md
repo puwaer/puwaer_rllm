@@ -81,8 +81,8 @@ pwd /work/gj26/j26001/Document/puwaer_rllm/rllm
 python scripts/data/download_datasets.py
 python scripts/data/deepscaler_dataset.py
 
-chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
 export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh --model $MODEL_PATH
 
 

@@ -58,3 +58,15 @@ cmake -DCOMPUTE_BACKEND=cuda -S . -B build
 make
 pip install -e . -v
 
+
+git clone https://github.com/agentica-project/rllm.git
+cd rllm
+pip install -e ./verl
+pip install -e .
+
+python scripts/data/download_datasets.py
+python scripts/data/deepcoder_dataset.py
+
+chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
+export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+./scripts/deepscaler/train/deepscaler_1.5b_8k.sh --model $MODEL_PATH
