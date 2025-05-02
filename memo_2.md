@@ -35,8 +35,7 @@ pip install ninja
 pip install einops
 
 export TORCH_CUDA_ARCH_LIST="9.0"
-MAX_JOBS=4 pip install flash-attn --no-build-isolation -v
-
+MAX_JOBS=4 pip install flash-attn==2.7.4.post1 --no-build-isolation -v
 
 
 git clone https://github.com/vllm-project/vllm.git
