@@ -3,8 +3,26 @@ rm -rf rllm_env
 rm -rf /work/gj26/j26001/.cache/uv
 rm -rf ~/.cache/uv
 
+python -c "import torch; print(torch.cuda.is_available()); print(torch.version.cuda)"
+python -c "import flash_attn; print(getattr(flash_attn, '__version__', 'No version info'))"
+python -c "import vllm; print('vLLM version:', getattr(vllm, '__version__', 'Unknown')); from vllm import LLM; print('LLM class loaded successfully')"
 
+find ~/.cache/pip -name "vllm*.whl"
+find ~/.cache/uv -name "vllm*.whl"
+find ~/.cache/uv -name "triton*.whl"
+find ~/.cache/uv -name "bitsandbytes*.whl"
+find ~/.cache/uv -name "flash_attn*.whl"
+
+
+uv pip install /work/gj26/j26001/wheels/vllm-0.7.4.dev0+ged6e9075d.d20250502.cu124-0.editable-cp310-cp310-linux_aarch64.whl
+
+
+
+
+
+環境構築
 module purge 
+module load python/3.10
 module load cuda/12.4
 module load cudnn/9.5.1.17
 module list
@@ -46,4 +64,17 @@ make
 uv pip install -e . -v
 
 export TORCH_CUDA_ARCH_LIST="9.0"
-MAX_JOBS=4 uv pip install flash-attn --no-build-isolation -v
+MAX_JOBS=4 uv pip install flash-attn==flash-attn==2.7.4.post1 --no-build-isolation -v
+
+
+git clone https://github.com/agentica-project/rllm.git
+cd rllm
+pip install -e ./verl
+pip install -e .
+
+python scripts/data/download_datasets.py
+python scripts/data/deepcoder_dataset.py
+
+chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
+export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+./scripts/deepscaler/train/deepscaler_1.5b_8k.sh --model $MODEL_PATH
