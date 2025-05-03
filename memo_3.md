@@ -12,6 +12,7 @@ find ~/.cache/uv -name "vllm*.whl"
 find ~/.cache/uv -name "triton*.whl"
 find ~/.cache/uv -name "bitsandbytes*.whl"
 find ~/.cache/uv -name "flash_attn*.whl"
+find ~/.cache/uv -name "verl*.whl"
 
 
 uv pip install /work/gj26/j26001/wheels/vllm-0.7.4.dev0+ged6e9075d.d20250502.cu124-0.editable-cp310-cp310-linux_aarch64.whl
@@ -65,6 +66,12 @@ uv pip install -e . -v
 
 export TORCH_CUDA_ARCH_LIST="9.0"
 MAX_JOBS=4 uv pip install flash-attn==flash-attn==2.7.4.post1 --no-build-isolation -v
+
+
+git clone https://github.com/volcengine/verl.git
+cd verl
+uv pip install -e . -v
+
 
 
 git clone https://github.com/agentica-project/rllm.git
