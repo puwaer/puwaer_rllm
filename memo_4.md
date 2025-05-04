@@ -11,7 +11,6 @@ python -c "import torch; print(torch.__version__); print(hasattr(torch.backends.
 
 
 
-find ~/.cache/pip -name "vllm*.whl"
 find ~/.cache/uv -name "vllm*.whl"
 find ~/.cache/uv -name "triton*.whl"
 find ~/.cache/uv -name "bitsandbytes*.whl"
@@ -25,7 +24,7 @@ git log -1
 
 
 uv pip install /work/gj26/j26001/wheels/xformers-0.0.31+8fc8ec5a.d20250504-0.editable-cp310-cp310-linux_aarch64.whl
-uv pip install /work/gj26/j26001/wheels/
+uv pip install /work/gj26/j26001/wheels/vllm-0.6.3+cu126-0.editable-cp310-cp310-linux_aarch64.whl
 uv pip install /work/gj26/j26001/wheels/
 uv pip install /work/gj26/j26001/wheels/
 
@@ -57,10 +56,6 @@ pip install ninja
 uv pip install torch==2.6.0 torchaudio torchvision --index-url https://download.pytorch.org/whl/cu126
 
 
-git clone https://github.com/facebookresearch/xformers.git
-cd xformers
-git submodule update --init --recursive
-MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
 
 git clone https://github.com/vllm-project/vllm.git
@@ -77,10 +72,37 @@ git checkout remotes/origin/release/3.1.x
 uv pip install psutil
 uv pip install -e python -v
 
-
 git clone https://github.com/bitsandbytes-foundation/bitsandbytes.git
 cd bitsandbytes/
 git checkout 0.45.5
 cmake -DCOMPUTE_BACKEND=cuda -S
 make
 uv pip install -e . -v
+
+git clone https://github.com/facebookresearch/xformers.git
+cd xformers
+git submodule update --init --recursive
+MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
+
+
+export TORCH_CUDA_ARCH_LIST="9.0"
+MAX_JOBS=4 uv pip install flash-attn==2.7.4.post1 --no-build-isolation -v
+
+
+
+git clone https://github.com/puwaer/rllm.git
+cd rllm/verl
+MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
+cd rllm
+pip install -e . -v
+
+
+python scripts/data/download_datasets.py
+python scripts/data/deepscaler_dataset.py
+
+huggingface-cli login
+wandb login
+
+chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
+export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+./scripts/deepscaler/train/deepscaler_1.5b_8k.sh --model $MODEL_PATH

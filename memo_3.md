@@ -97,6 +97,7 @@ cd rllm
 pip install -e ./verl
 pip install -e . -v
 
+git clone https://github.com/puwaer/rllm.git
 cd rllm/verl
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 cd rllm
