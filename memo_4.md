@@ -4,10 +4,10 @@ rm -rf /work/gj26/j26001/.cache/uv
 rm -rf ~/.cache/uv
 
 python -c "import torch; print(torch.cuda.is_available()); print(torch.version.cuda)"
+python -c "import torch; print(torch.__version__); print(hasattr(torch.backends.cuda, 'is_flash_attention_available'))"
 python -c "import flash_attn; print(getattr(flash_attn, '__version__', 'No version info'))"
 python -c "import vllm; print('vLLM version:', getattr(vllm, '__version__', 'Unknown')); from vllm import LLM; print('LLM class loaded successfully')"
 python -c "import vllm; print(vllm.__version__)"
-python -c "import torch; print(torch.__version__); print(hasattr(torch.backends.cuda, 'is_flash_attention_available'))"
 
 
 
@@ -58,6 +58,7 @@ uv pip install torch==2.6.0 torchaudio torchvision --index-url https://download.
 
 
 
+
 git clone https://github.com/vllm-project/vllm.git
 cd vllm
 git checkout v0.6.3
@@ -84,6 +85,16 @@ cd xformers
 git submodule update --init --recursive
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
+git clone https://github.com/facebookresearch/xformers.git
+cd xformers
+git checkout v0.0.29.post2
+git submodule update --init --recursive
+export CUTE_ARCH_MMA_SM90A_ENABLED=1
+export CUDA_ARCHITECTURES=90 
+export TORCH_CUDA_ARCH_LIST="9.0"
+pip install -e . --verbose
+MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
+
 
 export TORCH_CUDA_ARCH_LIST="9.0"
 MAX_JOBS=4 uv pip install flash-attn==2.7.4.post1 --no-build-isolation -v
@@ -103,6 +114,13 @@ python scripts/data/deepscaler_dataset.py
 huggingface-cli login
 wandb login
 
+export CUDA_LAUNCH_BLOCKING=1
+
 chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
 export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh --model $MODEL_PATH
+
+
+chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_test.sh
+export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+./scripts/deepscaler/train/deepscaler_1.5b_test.sh --model $MODEL_PATH
