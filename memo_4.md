@@ -85,6 +85,9 @@ cd xformers
 git submodule update --init --recursive
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
+
+
+
 git clone https://github.com/facebookresearch/xformers.git
 cd xformers
 git checkout v0.0.29.post2
@@ -96,8 +99,15 @@ pip install -e . --verbose
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
 
+
+git clone https://github.com/Dao-AILab/flash-attention.git
+cd flash-attention
+git checkout v2.7.4.post1
+cd hopper
+export CMAKE_ARGS="-DCMAKE_CUDA_FLAGS='-DCUTE_ARCH_MMA_SM90A_ENABLED'"
 export TORCH_CUDA_ARCH_LIST="9.0"
-MAX_JOBS=4 uv pip install flash-attn==2.7.4.post1 --no-build-isolation -v
+MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
+
 
 
 
