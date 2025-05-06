@@ -22,7 +22,6 @@ ls /work/gj26/j26001/wheels/
 
 git log -1
 
-+ xformers==0.0.28+c909f0d6.d20250506 (from file:///work/gj26/j26001/xformers)
 
 uv pip install /work/gj26/j26001/wheels/vllm-0.6.3+cu126-0.editable-cp310-cp310-linux_aarch64.whl
 uv pip install /work/gj26/j26001/wheels/triton-3.1.0-0.editable-cp310-cp310-linux_aarch64.whl
@@ -47,6 +46,8 @@ export CXX=g++
 
 export CUDA_VISIBLE_DEVICES=0
 export TORCH_CUDA_ARCH_LIST="9.0"
+
+export CUDA_LAUNCH_BLOCKING=1
 
 
 uv venv rllm_env_4 --python 3.10
@@ -125,13 +126,13 @@ python scripts/data/deepscaler_dataset.py
 huggingface-cli login
 wandb login
 
-export CUDA_LAUNCH_BLOCKING=1
 
 chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh
 export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 ./scripts/deepscaler/train/deepscaler_1.5b_8k.sh --model $MODEL_PATH
 
 
+cd rllm
 chmod +777 ./scripts/deepscaler/train/deepscaler_1.5b_test.sh
 export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 ./scripts/deepscaler/train/deepscaler_1.5b_test.sh --model $MODEL_PATH
