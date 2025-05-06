@@ -59,9 +59,6 @@ uv pip install ninja
 uv pip install torch==2.6.0 torchaudio torchvision --index-url https://download.pytorch.org/whl/cu126
 
 
-
-
-
 git clone https://github.com/vllm-project/vllm.git
 cd vllm
 git checkout v0.6.3
@@ -77,7 +74,7 @@ uv pip install psutil
 uv pip install -e python -v
 
 git clone https://github.com/bitsandbytes-foundation/bitsandbytes.git
-cd bitsandbytes/
+cd bitsandbytes
 git checkout 0.45.5
 cmake -DCOMPUTE_BACKEND=cuda -S
 make
