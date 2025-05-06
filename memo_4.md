@@ -28,7 +28,7 @@ uv pip install /work/gj26/j26001/wheels/vllm-0.6.3+cu126-0.editable-cp310-cp310-
 uv pip install /work/gj26/j26001/wheels/triton-3.1.0-0.editable-cp310-cp310-linux_aarch64.whl
 uv pip install /work/gj26/j26001/wheels/bitsandbytes-0.45.5-0.editable-cp310-cp310-linux_aarch64.whl
 
-uv pip install /work/gj26/j26001/wheels/xformers-0.0.31+8fc8ec5a.d20250504-0.editable-cp310-cp310-linux_aarch64.whl
+uv pip install /work/gj26/j26001/wheels/xformers-0.0.28+c909f0d6.d20250506-0.editable-cp310-cp310-linux_aarch64.whl
 uv pip install /work/gj26/j26001/wheels/flash_attn-2.7.4.post1-cp310-cp310-linux_aarch64.whl
 uv pip install /work/gj26/j26001/wheels/
 
