@@ -17,15 +17,19 @@ find ~/.cache/uv -name "bitsandbytes*.whl"
 find ~/.cache/uv -name "flash_attn*.whl"
 find ~/.cache/uv -name "verl*.whl"
 find ~/.cache/uv -name "xformers*.whl"
-
+find ~/.cache/uv -name "*.whl"
+ls /work/gj26/j26001/wheels/
 
 git log -1
 
++ xformers==0.0.28+c909f0d6.d20250506 (from file:///work/gj26/j26001/xformers)
 
+uv pip install /work/gj26/j26001/wheels/vllm-0.6.3+cu126-0.editable-cp310-cp310-linux_aarch64.whl
+uv pip install /work/gj26/j26001/wheels/triton-3.1.0-0.editable-cp310-cp310-linux_aarch64.whl
+uv pip install /work/gj26/j26001/wheels/bitsandbytes-0.45.5-0.editable-cp310-cp310-linux_aarch64.whl
 
 uv pip install /work/gj26/j26001/wheels/xformers-0.0.31+8fc8ec5a.d20250504-0.editable-cp310-cp310-linux_aarch64.whl
-uv pip install /work/gj26/j26001/wheels/vllm-0.6.3+cu126-0.editable-cp310-cp310-linux_aarch64.whl
-uv pip install /work/gj26/j26001/wheels/
+uv pip install /work/gj26/j26001/wheels/flash_attn-2.7.4.post1-cp310-cp310-linux_aarch64.whl
 uv pip install /work/gj26/j26001/wheels/
 
 
@@ -49,9 +53,7 @@ uv venv rllm_env_4 --python 3.10
 source rllm_env_4/bin/activate
 uv pip install --upgrade pip
 uv pip install setuptools
-
-
-pip install ninja
+uv pip install ninja
 
 uv pip install torch==2.6.0 torchaudio torchvision --index-url https://download.pytorch.org/whl/cu126
 
@@ -90,12 +92,11 @@ MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
 git clone https://github.com/facebookresearch/xformers.git
 cd xformers
-git checkout v0.0.29.post2
+git checkout v0.0.28
 git submodule update --init --recursive
 export CUTE_ARCH_MMA_SM90A_ENABLED=1
 export CUDA_ARCHITECTURES=90 
 export TORCH_CUDA_ARCH_LIST="9.0"
-pip install -e . --verbose
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
 
@@ -108,14 +109,14 @@ export CMAKE_ARGS="-DCMAKE_CUDA_FLAGS='-DCUTE_ARCH_MMA_SM90A_ENABLED'"
 export TORCH_CUDA_ARCH_LIST="9.0"
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 
-
+MAX_JOBS=4 uv pip install flash-attn==2.7.4.post1 --no-build-isolation -v
 
 
 git clone https://github.com/puwaer/rllm.git
 cd rllm/verl
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
 cd rllm
-pip install -e . -v
+uv pip install -e . -v
 
 
 python scripts/data/download_datasets.py

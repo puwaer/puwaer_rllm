@@ -61,3 +61,5 @@ uv pip install --no-deps --no-index ./packages/*.whl
 git clone https://github.com/puwaer/rllm.git
 cd verl
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
+cd rllm
+uv pip install -e . -v
