@@ -1,0 +1,1 @@
+./scripts/train_tiny_zero_qwen_1.5b.sh: line 31: trainer.total_epochs=10: command not found
