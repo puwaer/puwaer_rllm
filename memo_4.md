@@ -43,11 +43,11 @@ module load cudnn/9.5.1.17
 module list
 export CC=gcc
 export CXX=g++
-
 export CUDA_VISIBLE_DEVICES=0
 export TORCH_CUDA_ARCH_LIST="9.0"
-
 export CUDA_LAUNCH_BLOCKING=1
+
+source rllm_env_4/bin/activate
 
 
 uv venv rllm_env_4 --python 3.10
@@ -84,7 +84,6 @@ git clone https://github.com/facebookresearch/xformers.git
 cd xformers
 git submodule update --init --recursive
 MAX_JOBS=4 uv pip install -e . --no-build-isolation -v
-
 
 
 
@@ -140,7 +139,7 @@ export MODEL_PATH="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 
 実行コマンド
 conda activate tiny_zero
-python scripts/data/tiny_zero_countdown.py --local_dir ./data/countdown
+python scripts/data/tiny_zero_countdown.py --local_dir ./dataset/countdown
 
 学習コマンド
 conda activate tiny_zero
@@ -155,5 +154,5 @@ export ROLLOUT_TP_SIZE=1
 export EXPERIMENT_NAME=countdown-qwen2.5-test3
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-chmod +777 ./scripts/train_tiny_zero_grpo.sh
-bash ./scripts/train_tiny_zero_grpo.sh
+chmod +777 ./scripts/tiny_zero/train_tiny_zero_grpo.sh
+./scripts/tiny_zero/train_tiny_zero_grpo.sh
