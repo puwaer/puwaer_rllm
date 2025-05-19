@@ -8,7 +8,9 @@ python -c "import torch; print(torch.__version__); print(hasattr(torch.backends.
 python -c "import flash_attn; print(getattr(flash_attn, '__version__', 'No version info'))"
 python -c "import vllm; print('vLLM version:', getattr(vllm, '__version__', 'Unknown')); from vllm import LLM; print('LLM class loaded successfully')"
 python -c "import vllm; print(vllm.__version__)"
-
+python -c "import apex; print('Apex installed successfully')"
+python -c "import torch; from apex import amp; model = torch.nn.Linear(10, 10).cuda(); optimizer = torch.optim.SGD(model.parameters(), lr=0.01); model, optimizer = amp.initialize(model, optimizer, opt_level='O1'); print('Apex AMP initialized successfully')"
+python -c "import apex; print('apex imported successfully')"
 
 
 find ~/.cache/uv -name "vllm*.whl"
