@@ -11,6 +11,7 @@ python -c "import vllm; print(vllm.__version__)"
 python -c "import apex; print('Apex installed successfully')"
 python -c "import torch; from apex import amp; model = torch.nn.Linear(10, 10).cuda(); optimizer = torch.optim.SGD(model.parameters(), lr=0.01); model, optimizer = amp.initialize(model, optimizer, opt_level='O1'); print('Apex AMP initialized successfully')"
 python -c "import apex; print('apex imported successfully')"
+python -c "import triton; print(triton.__version__)"
 
 
 find ~/.cache/uv -name "vllm*.whl"
